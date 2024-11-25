@@ -1,0 +1,42 @@
+[
+  {
+    "id": 1,
+    "name": "Müller Family",
+    "location": "Berlin",
+    "workers": 10,
+    "total": 1000,
+    "estimate": 100
+  },
+  {
+    "id": 2,
+    "name": "Jäger Family",
+    "location": "Hamburg",
+    "workers": 5,
+    "total": 500,
+    "estimate": 50
+  },
+  {
+    "id": 3,
+    "name": "Schmidt Family",
+    "location": "Munich",
+    "workers": 3,
+    "total": 300,
+    "estimate": 30
+  },
+  {
+    "id": 4,
+    "name": "Weber Family",
+    "location": "Frankfurt",
+    "workers": 8,
+    "total": 800,
+    "estimate": 80
+  },
+  {
+    "id": 5,
+    "name": "Becker Family",
+    "location": "Stuttgart",
+    "workers": 2,
+    "total": 200,
+    "estimate": 20
+  }
+]

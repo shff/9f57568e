@@ -1,0 +1,43 @@
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 23
+          cache: 'yarn'
+      - run: yarn
+      - run: yarn playwright install --with-deps
+      - run: yarn lint
+      - run: yarn format --check
+      - run: yarn test --coverage
+      - run: yarn build --base ./ # Since it is hosted in a subfolder
+      - run: yarn test:e2e
+      - uses: actions/upload-pages-artifact@v3
+        if: ${{ github.event_name != 'pull_request' }}
+        with:
+          path: './dist'
+          retention-days: '1'
+  deploy:
+    needs: build
+    if: ${{ github.event_name != 'pull_request' }}
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4
